@@ -1,0 +1,10 @@
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\JuegoRol.exe.config
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\JuegoRol.exe
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\JuegoRol.pdb
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.csprojAssemblyReference.cache
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.Form1.resources
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.Properties.Resources.resources
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.csproj.GenerateResource.cache
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.csproj.CoreCompileInputs.cache
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.exe
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.pdb
