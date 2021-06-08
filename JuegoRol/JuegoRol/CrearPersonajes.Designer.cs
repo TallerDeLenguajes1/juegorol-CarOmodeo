@@ -38,6 +38,8 @@ namespace JuegoRol
             this.labelApodo = new System.Windows.Forms.Label();
             this.labelFechaNac = new System.Windows.Forms.Label();
             this.groupPersonaje = new System.Windows.Forms.GroupBox();
+            this.btnPersAleatorio = new System.Windows.Forms.Button();
+            this.btnCrearNuevoPerd = new System.Windows.Forms.Button();
             this.groupPersonaje.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,19 +111,44 @@ namespace JuegoRol
             // 
             // groupPersonaje
             // 
+            this.groupPersonaje.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupPersonaje.Controls.Add(this.btnCrearNuevoPerd);
+            this.groupPersonaje.Controls.Add(this.btnPersAleatorio);
             this.groupPersonaje.Controls.Add(this.tipoPersonaje);
             this.groupPersonaje.Location = new System.Drawing.Point(9, 12);
             this.groupPersonaje.Name = "groupPersonaje";
-            this.groupPersonaje.Size = new System.Drawing.Size(779, 426);
+            this.groupPersonaje.Size = new System.Drawing.Size(366, 253);
             this.groupPersonaje.TabIndex = 8;
             this.groupPersonaje.TabStop = false;
             this.groupPersonaje.Text = "Crear Personaje";
+            // 
+            // btnPersAleatorio
+            // 
+            this.btnPersAleatorio.Location = new System.Drawing.Point(109, 195);
+            this.btnPersAleatorio.Name = "btnPersAleatorio";
+            this.btnPersAleatorio.Size = new System.Drawing.Size(121, 41);
+            this.btnPersAleatorio.TabIndex = 3;
+            this.btnPersAleatorio.Text = "Crear Personaje Aleatorio";
+            this.btnPersAleatorio.UseVisualStyleBackColor = true;
+            this.btnPersAleatorio.Click += new System.EventHandler(this.btnPersAleatorio_Click);
+            // 
+            // btnCrearNuevoPerd
+            // 
+            this.btnCrearNuevoPerd.Enabled = false;
+            this.btnCrearNuevoPerd.Location = new System.Drawing.Point(236, 195);
+            this.btnCrearNuevoPerd.Name = "btnCrearNuevoPerd";
+            this.btnCrearNuevoPerd.Size = new System.Drawing.Size(111, 41);
+            this.btnCrearNuevoPerd.TabIndex = 4;
+            this.btnCrearNuevoPerd.Text = "Crear Nuevo Personaje";
+            this.btnCrearNuevoPerd.UseVisualStyleBackColor = true;
             // 
             // FormCrearPersonaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(387, 450);
+            this.ClientSize = new System.Drawing.Size(387, 277);
             this.Controls.Add(this.labelFechaNac);
             this.Controls.Add(this.labelApodo);
             this.Controls.Add(this.labelNombre);
@@ -130,6 +157,7 @@ namespace JuegoRol
             this.Controls.Add(this.apodo);
             this.Controls.Add(this.nombre);
             this.Controls.Add(this.groupPersonaje);
+            this.MaximizeBox = false;
             this.Name = "FormCrearPersonaje";
             this.Text = "Personajes";
             this.groupPersonaje.ResumeLayout(false);
@@ -149,6 +177,8 @@ namespace JuegoRol
         private System.Windows.Forms.Label labelApodo;
         private System.Windows.Forms.Label labelFechaNac;
         private System.Windows.Forms.GroupBox groupPersonaje;
+        private System.Windows.Forms.Button btnPersAleatorio;
+        private System.Windows.Forms.Button btnCrearNuevoPerd;
     }
 }
 

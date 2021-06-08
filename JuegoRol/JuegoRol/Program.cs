@@ -16,6 +16,8 @@ namespace JuegoRol
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FormCrearPersonaje());
+
         }
     }
 }

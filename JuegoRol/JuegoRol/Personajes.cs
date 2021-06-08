@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JuegoRol
 {
-    enum tipoPersonajes
+    enum TipoPersonajes
     {
         Humano,
         Orco,
@@ -17,7 +17,7 @@ namespace JuegoRol
 
     public class Personajes
     {
-        private string tipo;
+        private TipoPersonajes tipo;
         private string nombre;
         private string apodo;
         private DateTime fechaNacimiento;
@@ -35,7 +35,7 @@ namespace JuegoRol
             salud = 100;
         }
 
-        public string Tipo { get => tipo; set => tipo = value; }
+        internal TipoPersonajes Tipo { get => tipo; set => tipo = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apodo { get => apodo; set => apodo = value; }
         public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
