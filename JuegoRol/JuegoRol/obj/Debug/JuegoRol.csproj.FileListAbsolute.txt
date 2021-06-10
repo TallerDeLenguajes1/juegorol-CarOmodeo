@@ -8,4 +8,5 @@ C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoR
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.exe
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.pdb
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.FormCrearPersonaje.resources
-C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.Personaje_Nuevo.resources
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.VentanaDatosPersonaje.resources
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.VentanaBatalla.resources

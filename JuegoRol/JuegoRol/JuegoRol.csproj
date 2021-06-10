@@ -47,13 +47,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreadorPersonajePrueba.cs" />
-    <Compile Include="PersonajeNuevo.cs">
+    <Compile Include="VentanaBatalla.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PersonajeNuevo.Designer.cs">
-      <DependentUpon>PersonajeNuevo.cs</DependentUpon>
+    <Compile Include="VentanaBatalla.Designer.cs">
+      <DependentUpon>VentanaBatalla.cs</DependentUpon>
     </Compile>
-    <Compile Include="Personajes.cs" />
+    <Compile Include="VentanaDatosPersonaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentanaDatosPersonaje.Designer.cs">
+      <DependentUpon>VentanaDatosPersonaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personaje.cs" />
     <Compile Include="CrearPersonajes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,8 +71,11 @@
     <EmbeddedResource Include="CrearPersonajes.resx">
       <DependentUpon>CrearPersonajes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonajeNuevo.resx">
-      <DependentUpon>PersonajeNuevo.cs</DependentUpon>
+    <EmbeddedResource Include="VentanaBatalla.resx">
+      <DependentUpon>VentanaBatalla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentanaDatosPersonaje.resx">
+      <DependentUpon>VentanaDatosPersonaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

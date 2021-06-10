@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace JuegoRol
 {
-    class CreadorPersonajePrueba
+    public static class CreadorPersonajePrueba
     {
-        Random aleatorio = new Random();
-        public CreadorPersonajePrueba()
-        {            
-
-        }
-
-        public Personajes GenerarPersonaje()
+        static Random aleatorio = new Random();
+        public static Personaje GenerarPersonaje()
         {
-            Personajes nuevo = new Personajes();
+           
+            Personaje nuevo = new Personaje();
 
             nuevo.Tipo = generarTipo();
             nuevo.Nombre = generarNombre();
@@ -35,33 +31,34 @@ namespace JuegoRol
         }
 
         //Obtención de los Datos
-        TipoPersonajes generarTipo()
+        static TipoPersonaje generarTipo()
         {
+
             int num = aleatorio.Next(5);
-            TipoPersonajes tipo;
+            TipoPersonaje tipo;
 
             switch (num)
             {
                 case 0:
-                    tipo = TipoPersonajes.Humano;
+                    tipo = TipoPersonaje.Humano;
                     break;
                 case 1:
-                    tipo = TipoPersonajes.Orco;
+                    tipo = TipoPersonaje.Orco;
                     break;
                 case 2:
-                    tipo = TipoPersonajes.Elfo;
+                    tipo = TipoPersonaje.Elfo;
                     break;
                 case 3:
-                    tipo = TipoPersonajes.Enano;
+                    tipo = TipoPersonaje.Enano;
                     break;                   
                 default:
-                    tipo = TipoPersonajes.Hobbit;
+                    tipo = TipoPersonaje.Hobbit;
                     break;
             }
             return tipo;
         }
 
-        string generarNombre()
+        static string generarNombre()
         {
             string[] nombres = { "Carlos", "Maria", "Pedro", "Juan", "Lucia" };
             string[] apellidos = { "Perez", "Gonzales", "Ramirez", "Albornoz", "Torres" };
@@ -69,10 +66,10 @@ namespace JuegoRol
             int numNombre = aleatorio.Next(5);
             int numApellido = aleatorio.Next(5);
 
-            return nombres[numNombre] + apellidos[numApellido];
+            return nombres[numNombre] + " " + apellidos[numApellido];
         }
 
-        string generarApodo()
+        static string generarApodo()
         {
             string[] apodos = { "Pepe", "Gordo", "Alto", "Hierro", "Flash" };
 
@@ -81,36 +78,36 @@ namespace JuegoRol
             return apodos[numApodo];
         }
 
-        DateTime generadorFechaNacimiento()
+        static DateTime generadorFechaNacimiento()
         {
             DateTime inicio = new DateTime(1721, 1, 1);
             int range = (DateTime.Today - inicio).Days;
-            return inicio.AddDays(aleatorio.Next(range));
+            return inicio.AddDays(aleatorio.Next(range)).Date;
         }
 
-        int generadorEdad(DateTime fechaNacimiento)
+        static int generadorEdad(DateTime fechaNacimiento)
         {
             return DateTime.Today.Year - fechaNacimiento.Year;
         }
 
         //Obtencion de las Caracteristicas
 
-        int genererVelocidad()
+        static int genererVelocidad()
         {
             return aleatorio.Next(1, 11);
         }
 
-        int genererDestreza()
+        static int genererDestreza()
         {
             return aleatorio.Next(1, 6);
         }
 
-        int genererFuerza()
+        static int genererFuerza()
         {
             return aleatorio.Next(1, 11);
         }
 
-        int genererArmadura()
+        static int genererArmadura()
         {
             return aleatorio.Next(1, 11);
         }
