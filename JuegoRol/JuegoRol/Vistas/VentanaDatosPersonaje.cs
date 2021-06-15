@@ -12,26 +12,33 @@ namespace JuegoRol
 {
     public partial class VentanaDatosPersonaje : Form
     {
-        public List<Personaje> listaParticipantes;
+        private List<Personaje> listaParticipantes;
         public VentanaDatosPersonaje(List<Personaje> personajes)
         {
             InitializeComponent();
-
             this.listaParticipantes = personajes;
+            inicializarComboBox();                 
+        }
 
-            foreach(Personaje personaje in personajes)
+        private void inicializarComboBox()
+        {
+            foreach (Personaje personaje in listaParticipantes)
             {
                 comboBoxPersonajes.Items.Add(personaje.Nombre);
             }
 
-            comboBoxPersonajes.SelectedIndex = 0; 
-            
+            comboBoxPersonajes.SelectedIndex = 0;
         }
 
         private void comboBoxPersonajes_SelectedIndexChanged(object sender, EventArgs e)
         {
             int i = comboBoxPersonajes.SelectedIndex;
-            Personaje participante = listaParticipantes.ElementAt(i);
+            inicializarPersonaje(listaParticipantes.ElementAt(i));           
+            
+        }
+
+        private void inicializarPersonaje(Personaje participante)
+        {
             label1.Text = Convert.ToString(participante.Tipo);
             label2.Text = participante.Nombre;
             label3.Text = participante.Apodo;
@@ -45,7 +52,6 @@ namespace JuegoRol
             label14.Text = Convert.ToString(participante.Fuerza);
             label15.Text = Convert.ToString(participante.Nivel);
             label16.Text = Convert.ToString(participante.Armadura);
-            
         }
 
         private void btnIrBatalla_Click(object sender, EventArgs e)

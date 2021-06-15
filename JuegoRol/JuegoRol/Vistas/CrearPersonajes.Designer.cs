@@ -46,37 +46,37 @@ namespace JuegoRol
             // 
             // nombre
             // 
-            this.nombre.Enabled = false;
             this.nombre.Location = new System.Drawing.Point(136, 100);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(205, 20);
             this.nombre.TabIndex = 0;
+            this.nombre.TextChanged += new System.EventHandler(this.nombre_TextChanged);
             // 
             // apodo
             // 
-            this.apodo.Enabled = false;
             this.apodo.Location = new System.Drawing.Point(136, 137);
             this.apodo.Name = "apodo";
             this.apodo.Size = new System.Drawing.Size(205, 20);
             this.apodo.TabIndex = 1;
+            this.apodo.TextChanged += new System.EventHandler(this.apodo_TextChanged);
             // 
             // tipoPersonaje
             // 
-            this.tipoPersonaje.Enabled = false;
             this.tipoPersonaje.FormattingEnabled = true;
             this.tipoPersonaje.Location = new System.Drawing.Point(127, 51);
             this.tipoPersonaje.Name = "tipoPersonaje";
             this.tipoPersonaje.Size = new System.Drawing.Size(205, 21);
             this.tipoPersonaje.TabIndex = 2;
+            this.tipoPersonaje.SelectedIndexChanged += new System.EventHandler(this.tipoPersonaje_SelectedIndexChanged);
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Location = new System.Drawing.Point(136, 170);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(205, 20);
             this.dateTimePicker1.TabIndex = 3;
             this.dateTimePicker1.Value = new System.DateTime(2021, 6, 3, 0, 0, 0, 0);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // labelTipoPersonaje
             // 
@@ -138,6 +138,7 @@ namespace JuegoRol
             this.btnCrearNuevoPerd.TabIndex = 4;
             this.btnCrearNuevoPerd.Text = "Crear Nuevo Personaje";
             this.btnCrearNuevoPerd.UseVisualStyleBackColor = true;
+            this.btnCrearNuevoPerd.Click += new System.EventHandler(this.btnCrearNuevoPerd_Click);
             // 
             // btnPersAleatorio
             // 
@@ -175,6 +176,7 @@ namespace JuegoRol
             this.Controls.Add(this.groupPersonaje);
             this.MaximizeBox = false;
             this.Name = "FormCrearPersonaje";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Personaje";
             this.groupPersonaje.ResumeLayout(false);
             this.ResumeLayout(false);

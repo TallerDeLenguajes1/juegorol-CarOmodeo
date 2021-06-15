@@ -317,6 +317,7 @@ namespace JuegoRol
             this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(510, 405);
             this.Name = "VentanaDatosPersonaje";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VentanaDatosPersonaje";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

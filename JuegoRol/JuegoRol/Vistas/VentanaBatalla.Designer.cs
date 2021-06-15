@@ -142,6 +142,7 @@ namespace JuegoRol
             this.MaximumSize = new System.Drawing.Size(314, 236);
             this.MinimumSize = new System.Drawing.Size(314, 236);
             this.Name = "VentanaBatalla";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Batalla";
             this.ResumeLayout(false);
             this.PerformLayout();

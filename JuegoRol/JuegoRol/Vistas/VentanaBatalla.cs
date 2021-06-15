@@ -13,8 +13,8 @@ namespace JuegoRol
     public partial class VentanaBatalla : Form
     {
         List<Personaje> personajes;
-        int MDP = 50000;
         int numAtaque;
+        private const int MDP = 5000;
         public VentanaBatalla(List<Personaje> personajes)
         {
             InitializeComponent();
@@ -34,42 +34,7 @@ namespace JuegoRol
             label6.Text = " ";
             label7.Text = " ";
             btnSig.Enabled = false;
-        }
-
-        private int poderDisparo(Personaje participante)
-        {
-            return participante.Destreza * participante.Fuerza * participante.Nivel;
-        }
-
-        private float valorAtaque(float ED, float PD)
-        {
-            return PD * ED;
-        }
-
-        private int poderDefenza(Personaje participante)
-        {
-            return participante.Armadura * participante.Velocidad;
-        }
-
-        private float danioProvocado(int MDP, float VA, float ED, float PDEF)
-        {
-            return ((float)((VA * ED) - PDEF)/MDP)*100;
-        }
-
-        private float actualizarSalud(Personaje participante, float DProv)
-        {
-            float salud = participante.Salud - DProv;
-            if (salud < 0)
-            {
-                participante.Salud = 0;
-            }
-            else
-            {
-                participante.Salud = (int)salud;
-            }
-
-            return participante.Salud;
-        }
+        }        
 
         private void btnSig_Click(object sender, EventArgs e)
         {
@@ -85,19 +50,6 @@ namespace JuegoRol
             }
         }
 
-        private float[] generarValoresCombate(Personaje participante)
-        {
-            float[] valoresCombate = new float[4];
-            Random ED = new Random();
-
-            valoresCombate[0] = poderDisparo(participante);
-            valoresCombate[1] = (float)ED.Next(1, 20);
-            valoresCombate[2] = valorAtaque(valoresCombate[1], valoresCombate[0]);
-            valoresCombate[3] = poderDefenza(participante);
-
-            return valoresCombate;
-        }
-
         private void premioGanador(Personaje participante)
         {
             
@@ -108,13 +60,13 @@ namespace JuegoRol
             switch (catSeleccionada)
             {
                 case 0:
-                    participante.Velocidad += num.Next(1, 10);
+                    participante.Velocidad += num.Next(1, 5);
                     break;
                 case 1:
-                    participante.Destreza += num.Next(1, 10);
+                    participante.Destreza += num.Next(1, 5);
                     break;
                 case 2:
-                    participante.Fuerza += num.Next(1, 10);
+                    participante.Fuerza += num.Next(1, 5);
                     break;
                 case 3:
                     participante.Nivel += 1;
@@ -138,6 +90,21 @@ namespace JuegoRol
             }
         }
 
+        private float danioProvocadoPorEnemigo(Personaje participante, Personaje enemigo)
+        {
+            return Math.Abs((float)(enemigo.valorAtaque() - participante.poderDefenza()) / MDP * 100);
+        }
+
+        private void actualizarVentanaBatalla(Personaje p1, Personaje p2, int cantidadAtaque)
+        {
+            float danioP1 = danioProvocadoPorEnemigo(p1, p2);
+            float danioP2 = danioProvocadoPorEnemigo(p2, p1);
+            label4.Text = p1.actualizarSalud(danioP1).ToString();
+            label5.Text = p2.actualizarSalud(danioP2).ToString();
+
+            btnIniciarBatalla.Text = "Ataque" + (numAtaque + 1).ToString();
+        }
+
         private void btnIniciarBatalla_Click(object sender, EventArgs e)
         {
             if(numAtaque < 3 && siguenVivos() == 1)
@@ -145,17 +112,8 @@ namespace JuegoRol
                 Personaje personaje1 = personajes.ElementAt(0);
                 Personaje personaje2 = personajes.ElementAt(1);
 
-                float[] valoresP1 = generarValoresCombate(personaje1);
-                float[] valoresP2 = generarValoresCombate(personaje2);
-
-                float danioP1 = danioProvocado(MDP, valoresP2[2], valoresP2[1], valoresP1[3]);
-                float danioP2 = danioProvocado(MDP, valoresP1[2], valoresP1[1], valoresP2[3]);
-
-                label4.Text = actualizarSalud(personaje1,danioP1).ToString();
-                label5.Text = actualizarSalud(personaje2, danioP2).ToString();
-
-                btnIniciarBatalla.Text = "Ataque" + (numAtaque + 1).ToString();
-
+                actualizarVentanaBatalla(personaje1, personaje2, numAtaque);
+               
                 numAtaque++;
             }
             else
