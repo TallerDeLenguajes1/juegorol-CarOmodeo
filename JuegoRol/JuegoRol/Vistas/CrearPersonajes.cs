@@ -14,11 +14,13 @@ namespace JuegoRol
     {
         List<Personaje> personajes = new List<Personaje>();
         int cantidadParticipantes = 8;
-        public FormCrearPersonaje()
+        List<string> nombresPokemones;
+        public FormCrearPersonaje(List<string> listaPokemones)
         {
             InitializeComponent();
             inicializarComboBox();
             setearDateTimePicker();
+            this.nombresPokemones = listaPokemones;
         }
 
         private void inicializarComboBox()
@@ -37,7 +39,7 @@ namespace JuegoRol
 
         private void btnPersAleatorio_Click(object sender, EventArgs e)
         {
-            agregarPersonajeALista(CreadorPersonajePrueba.GenerarPersonaje());
+            agregarPersonajeALista(CreadorPersonajePrueba.GenerarPersonaje(nombresPokemones));
         }
 
         private void btnMostrarDatosPersonajes_Click(object sender, EventArgs e)
@@ -52,7 +54,7 @@ namespace JuegoRol
         {
             do
             {
-                agregarPersonajeALista(CreadorPersonajePrueba.GenerarPersonaje());
+                agregarPersonajeALista(CreadorPersonajePrueba.GenerarPersonaje(nombresPokemones));
 
             } while (personajes.Count != cantidad);
         }
@@ -96,6 +98,7 @@ namespace JuegoRol
 
         private void tipoPersonaje_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             habilitarBotonCrearPersonaje();
         }
 

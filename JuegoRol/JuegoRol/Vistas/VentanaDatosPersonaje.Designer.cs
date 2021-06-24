@@ -55,6 +55,7 @@ namespace JuegoRol
             this.labelVel = new System.Windows.Forms.Label();
             this.comboBoxPersonajes = new System.Windows.Forms.ComboBox();
             this.btnIrBatalla = new System.Windows.Forms.Button();
+            this.btnGuardarListaPersj = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -306,11 +307,22 @@ namespace JuegoRol
             this.btnIrBatalla.UseVisualStyleBackColor = true;
             this.btnIrBatalla.Click += new System.EventHandler(this.btnIrBatalla_Click);
             // 
+            // btnGuardarListaPersj
+            // 
+            this.btnGuardarListaPersj.Location = new System.Drawing.Point(257, 358);
+            this.btnGuardarListaPersj.Name = "btnGuardarListaPersj";
+            this.btnGuardarListaPersj.Size = new System.Drawing.Size(109, 34);
+            this.btnGuardarListaPersj.TabIndex = 4;
+            this.btnGuardarListaPersj.Text = "Guardar Lista Personajes";
+            this.btnGuardarListaPersj.UseVisualStyleBackColor = true;
+            this.btnGuardarListaPersj.Click += new System.EventHandler(this.btnGuardarListaPersj_Click);
+            // 
             // VentanaDatosPersonaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 404);
+            this.Controls.Add(this.btnGuardarListaPersj);
             this.Controls.Add(this.btnIrBatalla);
             this.Controls.Add(this.comboBoxPersonajes);
             this.Controls.Add(this.groupBox2);
@@ -355,5 +367,6 @@ namespace JuegoRol
         private System.Windows.Forms.Label labelDes;
         private System.Windows.Forms.ComboBox comboBoxPersonajes;
         private System.Windows.Forms.Button btnIrBatalla;
+        private System.Windows.Forms.Button btnGuardarListaPersj;
     }
 }

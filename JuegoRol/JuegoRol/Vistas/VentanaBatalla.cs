@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace JuegoRol
 {
@@ -52,30 +53,36 @@ namespace JuegoRol
 
         private void premioGanador(Personaje participante)
         {
-            
-            Random num = new Random();
-            participante.Salud = 100;
-            int catSeleccionada = num.Next(6);
-
-            switch (catSeleccionada)
+            if (personajes.Count == 1)
             {
-                case 0:
-                    participante.Velocidad += num.Next(1, 5);
-                    break;
-                case 1:
-                    participante.Destreza += num.Next(1, 5);
-                    break;
-                case 2:
-                    participante.Fuerza += num.Next(1, 5);
-                    break;
-                case 3:
-                    participante.Nivel += 1;
-                    break;
-                default:
-                    participante.Armadura += num.Next(1, 10);
-                    break;
+                guardarGanador("Ganador", ".csv", participante);
             }
+            else
+            {
+                Random num = new Random();
+                participante.Salud = 100;
+                int catSeleccionada = num.Next(6);
 
+                switch (catSeleccionada)
+                {
+                    case 0:
+                        participante.Velocidad += num.Next(1, 5);
+                        break;
+                    case 1:
+                        participante.Destreza += num.Next(1, 5);
+                        break;
+                    case 2:
+                        participante.Fuerza += num.Next(1, 5);
+                        break;
+                    case 3:
+                        participante.Nivel += 1;
+                        break;
+                    default:
+                        participante.Armadura += num.Next(1, 10);
+                        break;
+                }
+            }
+            
         }
 
         private int siguenVivos()
@@ -105,6 +112,14 @@ namespace JuegoRol
             btnIniciarBatalla.Text = "Ataque" + (numAtaque + 1).ToString();
         }
 
+        private void guardarGanador(string nombre, string formato, Personaje ganador)
+        {
+            FileStream Ganadores = new FileStream(nombre + formato, FileMode.Create);
+            StreamWriter escribirGanador = new StreamWriter(Ganadores);
+            escribirGanador.WriteLine("Ganador:;{0};{1};{2}",ganador.Nombre,ganador.Tipo,ganador.Salud);
+            escribirGanador.Close();
+        }
+
         private void btnIniciarBatalla_Click(object sender, EventArgs e)
         {
             if(numAtaque < 3 && siguenVivos() == 1)
@@ -124,15 +139,17 @@ namespace JuegoRol
                 {
                     label6.Text = "Perdedor :(";
                     label7.Text = "Ganador!!!";
-                    premioGanador(personajes.ElementAt(1));
                     personajes.RemoveAt(0);
+                    premioGanador(personajes.ElementAt(0));
+                   
                 }
                 else
                 {
                     label7.Text = "Perdedor :(";
                     label6.Text = "Ganador!!!";
-                    premioGanador(personajes.ElementAt(0));
                     personajes.RemoveAt(1);
+                    premioGanador(personajes.ElementAt(0));
+                   
                 }
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace JuegoRol
@@ -9,13 +10,13 @@ namespace JuegoRol
     public static class CreadorPersonajePrueba
     {
         static Random aleatorio = new Random();
-        public static Personaje GenerarPersonaje()
+        public static Personaje GenerarPersonaje(List<string> nombresPokemones)
         {
            
             Personaje nuevo = new Personaje();
 
             nuevo.Tipo = generarTipo();
-            nuevo.Nombre = generarNombre();
+            nuevo.Nombre = generarNombre(nombresPokemones);
             nuevo.Apodo = generarApodo();
             nuevo.FechaNacimiento = generadorFechaNacimiento();
             nuevo.Edad = generadorEdad(nuevo.FechaNacimiento);
@@ -58,15 +59,16 @@ namespace JuegoRol
             return tipo;
         }
 
-        private static string generarNombre()
+        private static string generarNombre(List<string> nombrePokemones)
         {
-            string[] nombres = { "Carlos", "Maria", "Pedro", "Juan", "Lucia" };
-            string[] apellidos = { "Perez", "Gonzales", "Ramirez", "Albornoz", "Torres" };
+            //string[] nombres = { "Carlos", "Maria", "Pedro", "Juan", "Lucia" };
+            //string[] apellidos = { "Perez", "Gonzales", "Ramirez", "Albornoz", "Torres" };
 
-            int numNombre = aleatorio.Next(5);
-            int numApellido = aleatorio.Next(5);
+            int numNombre = aleatorio.Next(20);
+            //int numApellido = aleatorio.Next(5);
 
-            return nombres[numNombre] + " " + apellidos[numApellido];
+            //return nombres[numNombre] + " " + apellidos[numApellido];
+            return nombrePokemones[numNombre];
         }
 
         private static string generarApodo()
@@ -113,4 +115,5 @@ namespace JuegoRol
         }
 
     }
+  
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace JuegoRol
 {
@@ -59,6 +58,39 @@ namespace JuegoRol
             VentanaBatalla ventanaNuevaBatalla = new VentanaBatalla(listaParticipantes);
             ventanaNuevaBatalla.Show();
             Close();
+        }
+
+        private void btnGuardarListaPersj_Click(object sender, EventArgs e)
+        {
+            guardarArchivoCSV();
+            guardarArchivoJson();
+            MessageBox.Show("Los Jugadores se guardaron con exito!!!", "Guardar Lista de Personajes");
+        }
+
+        private void guardarArchivoCSV()
+        {
+            FileStream jugadores = new FileStream("ListaJugadores.csv", FileMode.Create);
+            StreamWriter escribirJugadore = new StreamWriter(jugadores);
+
+            foreach (Personaje personaje in listaParticipantes)
+            {
+                escribirJugadore.WriteLine("{0};{1};{2}", personaje.Nombre, personaje.Tipo, personaje.Salud);
+            }
+            escribirJugadore.Close();
+        }
+
+        private void guardarArchivoJson()
+        {
+            
+            FileStream jugadores = new FileStream("ListaJugadores.Json", FileMode.Create);
+            StreamWriter escribirJugadore = new StreamWriter(jugadores);
+
+            foreach (Personaje personaje in listaParticipantes)
+            {
+                string strJson = JsonSerializer.Serialize(personaje);
+                escribirJugadore.WriteLine("{0}", strJson);
+            }
+            escribirJugadore.Close();
         }
     }
 }
