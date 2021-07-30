@@ -43,7 +43,7 @@ namespace JuegoRol
                         {
                             string responseBody = objReader.ReadToEnd();
 
-                            Pokemones pokemones = JsonSerializer.Deserialize<Pokemones>(responseBody);
+                            Pokemon pokemones = JsonSerializer.Deserialize<Pokemon>(responseBody);
 
                             foreach (Result pokemon in pokemones.Results)
                             {
@@ -72,7 +72,7 @@ namespace JuegoRol
             public string Url { get; set; }
         }
 
-        public class Pokemones
+        public class Pokemon
         {
             [JsonPropertyName("count")]
             public int Count { get; set; }

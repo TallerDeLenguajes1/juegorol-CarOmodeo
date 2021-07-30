@@ -46,7 +46,7 @@ namespace JuegoRol
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(44, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
@@ -57,7 +57,7 @@ namespace JuegoRol
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(121, 0);
+            this.label2.Location = new System.Drawing.Point(126, 19);
             this.label2.MaximumSize = new System.Drawing.Size(23, 18);
             this.label2.MinimumSize = new System.Drawing.Size(23, 18);
             this.label2.Name = "label2";
@@ -69,7 +69,7 @@ namespace JuegoRol
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(180, 0);
+            this.label3.Location = new System.Drawing.Point(194, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 2;
@@ -79,7 +79,7 @@ namespace JuegoRol
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 61);
+            this.label4.Location = new System.Drawing.Point(44, 79);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 3;
@@ -89,7 +89,7 @@ namespace JuegoRol
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(180, 61);
+            this.label5.Location = new System.Drawing.Point(194, 79);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 4;
@@ -98,7 +98,7 @@ namespace JuegoRol
             // btnSig
             // 
             this.btnSig.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSig.Location = new System.Drawing.Point(180, 125);
+            this.btnSig.Location = new System.Drawing.Point(165, 127);
             this.btnSig.Name = "btnSig";
             this.btnSig.Size = new System.Drawing.Size(94, 32);
             this.btnSig.TabIndex = 5;
@@ -109,7 +109,7 @@ namespace JuegoRol
             // btnIniciarBatalla
             // 
             this.btnIniciarBatalla.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnIniciarBatalla.Location = new System.Drawing.Point(3, 125);
+            this.btnIniciarBatalla.Location = new System.Drawing.Point(15, 127);
             this.btnIniciarBatalla.Name = "btnIniciarBatalla";
             this.btnIniciarBatalla.Size = new System.Drawing.Size(92, 32);
             this.btnIniciarBatalla.TabIndex = 6;

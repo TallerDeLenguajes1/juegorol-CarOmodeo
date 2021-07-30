@@ -81,12 +81,6 @@
     <Compile Include="Vistas\VentanaBatalla.Designer.cs">
       <DependentUpon>VentanaBatalla.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\VentanaDatosPersonaje.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Vistas\VentanaDatosPersonaje.Designer.cs">
-      <DependentUpon>VentanaDatosPersonaje.cs</DependentUpon>
-    </Compile>
     <Compile Include="Personaje.cs" />
     <Compile Include="Vistas\CrearPersonajes.cs">
       <SubType>Form</SubType>
@@ -101,9 +95,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\VentanaBatalla.resx">
       <DependentUpon>VentanaBatalla.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\VentanaDatosPersonaje.resx">
-      <DependentUpon>VentanaDatosPersonaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

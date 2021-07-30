@@ -20,13 +20,6 @@ namespace JuegoRol
             nuevo.Apodo = generarApodo();
             nuevo.FechaNacimiento = generadorFechaNacimiento();
             nuevo.Edad = generadorEdad(nuevo.FechaNacimiento);
-            nuevo.Salud = 100;
-
-            nuevo.Velocidad = genererVelocidad();
-            nuevo.Destreza = genererDestreza();
-            nuevo.Fuerza = genererFuerza();
-            nuevo.Nivel = 1;
-            nuevo.Armadura = genererArmadura();
 
             return nuevo;
         }
@@ -34,50 +27,28 @@ namespace JuegoRol
         //Obtención de los Datos
         static TipoPersonaje generarTipo()
         {
-
-            int num = aleatorio.Next(5);
-            TipoPersonaje tipo;
-
-            switch (num)
-            {
-                case 0:
-                    tipo = TipoPersonaje.Humano;
-                    break;
-                case 1:
-                    tipo = TipoPersonaje.Orco;
-                    break;
-                case 2:
-                    tipo = TipoPersonaje.Elfo;
-                    break;
-                case 3:
-                    tipo = TipoPersonaje.Enano;
-                    break;                   
-                default:
-                    tipo = TipoPersonaje.Hobbit;
-                    break;
-            }
-            return tipo;
+            return (TipoPersonaje)aleatorio.Next(10);
         }
 
-        private static string generarNombre(List<string> nombrePokemones)
+        private static string generarNombre(List<string> nombreElegibles)
         {
+
             //string[] nombres = { "Carlos", "Maria", "Pedro", "Juan", "Lucia" };
             //string[] apellidos = { "Perez", "Gonzales", "Ramirez", "Albornoz", "Torres" };
 
-            int numNombre = aleatorio.Next(20);
+            int numNombre = aleatorio.Next(nombreElegibles.Count);
+
             //int numApellido = aleatorio.Next(5);
 
             //return nombres[numNombre] + " " + apellidos[numApellido];
-            return nombrePokemones[numNombre];
+            return nombreElegibles[numNombre].Substring(0, 1).ToUpper() + nombreElegibles[numNombre].Substring(1);
         }
 
         private static string generarApodo()
         {
-            string[] apodos = { "Pepe", "Gordo", "Alto", "Hierro", "Flash" };
+            string[] apodos = { "The Slayer", "Firebane", "Dragonblade", "The Bull", "Bonestrike", "The Executioner", "Dead Claw", "Voidblood", "Greatstare", "Demonsword" };
 
-            int numApodo = aleatorio.Next(5);
-
-            return apodos[numApodo];
+            return apodos[aleatorio.Next(10)];
         }
 
         private static DateTime generadorFechaNacimiento()
@@ -90,29 +61,7 @@ namespace JuegoRol
         public static int generadorEdad(DateTime fechaNacimiento)
         {
             return DateTime.Today.Year - fechaNacimiento.Year;
-        }
-
-        //Obtencion de las Caracteristicas
-
-        public static int genererVelocidad()
-        {
-            return aleatorio.Next(1, 11);
-        }
-
-        public static int genererDestreza()
-        {
-            return aleatorio.Next(1, 6);
-        }
-
-        public static int genererFuerza()
-        {
-            return aleatorio.Next(1, 11);
-        }
-
-        public static int genererArmadura()
-        {
-            return aleatorio.Next(1, 11);
-        }
+        }      
 
     }
   

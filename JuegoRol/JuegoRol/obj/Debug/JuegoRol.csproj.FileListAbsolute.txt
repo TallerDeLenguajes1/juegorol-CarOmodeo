@@ -8,7 +8,6 @@ C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoR
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.exe
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.pdb
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.FormCrearPersonaje.resources
-C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.VentanaDatosPersonaje.resources
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.VentanaBatalla.resources
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\System.Buffers.dll

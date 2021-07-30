@@ -47,7 +47,6 @@ namespace JuegoRol
             {
                 MessageBox.Show("El ganador es " + personajes.ElementAt(0).Nombre, "Ganador!!!");
                 Close();
-                personajes.Clear();
             }
         }
 
@@ -61,24 +60,24 @@ namespace JuegoRol
             {
                 Random num = new Random();
                 participante.Salud = 100;
-                int catSeleccionada = num.Next(6);
+                int catSeleccionada = num.Next(5);
 
                 switch (catSeleccionada)
                 {
                     case 0:
-                        participante.Velocidad += num.Next(1, 5);
+                        participante.Velocidad += num.Next(1, 3);
                         break;
                     case 1:
-                        participante.Destreza += num.Next(1, 5);
+                        participante.Destreza += num.Next(1, 3);
                         break;
                     case 2:
-                        participante.Fuerza += num.Next(1, 5);
+                        participante.Fuerza += num.Next(1, 3);
                         break;
                     case 3:
                         participante.Nivel += 1;
                         break;
-                    default:
-                        participante.Armadura += num.Next(1, 10);
+                    case 4:
+                        participante.Armadura += num.Next(1, 3);
                         break;
                 }
             }
@@ -109,7 +108,7 @@ namespace JuegoRol
             label4.Text = p1.actualizarSalud(danioP1).ToString();
             label5.Text = p2.actualizarSalud(danioP2).ToString();
 
-            btnIniciarBatalla.Text = "Ataque" + (numAtaque + 1).ToString();
+            btnIniciarBatalla.Text = "Ataque " + (numAtaque + 1).ToString();
         }
 
         private void guardarGanador(string nombre, string formato, Personaje ganador)
@@ -122,34 +121,41 @@ namespace JuegoRol
 
         private void btnIniciarBatalla_Click(object sender, EventArgs e)
         {
-            if(numAtaque < 3 && siguenVivos() == 1)
+            if(numAtaque == 0)
             {
-                Personaje personaje1 = personajes.ElementAt(0);
-                Personaje personaje2 = personajes.ElementAt(1);
-
-                actualizarVentanaBatalla(personaje1, personaje2, numAtaque);
-               
+                btnIniciarBatalla.Text = "Ataque 1";
                 numAtaque++;
             }
             else
             {
-                btnIniciarBatalla.Enabled = false;
-                btnSig.Enabled = true;
-                if(personajes.ElementAt(0).Salud < personajes.ElementAt(1).Salud)
+                if (numAtaque < 3 && siguenVivos() == 1)
                 {
-                    label6.Text = "Perdedor :(";
-                    label7.Text = "Ganador!!!";
-                    personajes.RemoveAt(0);
-                    premioGanador(personajes.ElementAt(0));
-                   
+                    Personaje personaje1 = personajes.ElementAt(0);
+                    Personaje personaje2 = personajes.ElementAt(1);
+
+                    actualizarVentanaBatalla(personaje1, personaje2, numAtaque);
+                    numAtaque++;
                 }
                 else
                 {
-                    label7.Text = "Perdedor :(";
-                    label6.Text = "Ganador!!!";
-                    personajes.RemoveAt(1);
-                    premioGanador(personajes.ElementAt(0));
-                   
+                    btnIniciarBatalla.Enabled = false;
+                    btnSig.Enabled = true;
+                    if (personajes.ElementAt(0).Salud < personajes.ElementAt(1).Salud)
+                    {
+                        label4.Text = "Perdedor :(";
+                        label5.Text = "Ganador!!!";
+                        personajes.RemoveAt(0);
+                        premioGanador(personajes.ElementAt(0));
+
+                    }
+                    else
+                    {
+                        label5.Text = "Perdedor :(";
+                        label4.Text = "Ganador!!!";
+                        personajes.RemoveAt(1);
+                        premioGanador(personajes.ElementAt(0));
+
+                    }
                 }
             }
         }
