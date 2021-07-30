@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using JuegoRol.Vistas;
+using System.Text.Json;
 
 namespace JuegoRol
 {
@@ -21,6 +23,7 @@ namespace JuegoRol
             InitializeComponent();
             this.personajes = personajes;
             inicializarVentana(personajes);
+            btnBatallaAuto.Enabled = false;
         }
 
         private void inicializarVentana(List<Personaje> participantes)
@@ -35,13 +38,17 @@ namespace JuegoRol
             label6.Text = " ";
             label7.Text = " ";
             btnSig.Enabled = false;
-        }        
+        }
 
         private void btnSig_Click(object sender, EventArgs e)
         {
-            if(personajes.Count != 1)
+            if (personajes.Count != 1)
             {
                 inicializarVentana(personajes);
+                if (personajes.Count == 2)
+                {
+                    btnSig.Text = "Mostrar Ganador!!!";
+                }
             }
             else
             {
@@ -81,12 +88,12 @@ namespace JuegoRol
                         break;
                 }
             }
-            
+
         }
 
         private int siguenVivos()
         {
-            if(personajes.ElementAt(0).Salud > 0 && personajes.ElementAt(1).Salud > 0)
+            if (personajes.ElementAt(0).Salud > 0 && personajes.ElementAt(1).Salud > 0)
             {
                 return 1;
             }
@@ -113,10 +120,56 @@ namespace JuegoRol
 
         private void guardarGanador(string nombre, string formato, Personaje ganador)
         {
-            FileStream Ganadores = new FileStream(nombre + formato, FileMode.Create);
-            StreamWriter escribirGanador = new StreamWriter(Ganadores);
-            escribirGanador.WriteLine("Ganador:;{0};{1};{2}",ganador.Nombre,ganador.Tipo,ganador.Salud);
+            List<Ganador> listaGanadores = leerArchivoGanadores();
+            Ganador nuevoGanador = new Ganador();
+
+            nuevoGanador.Nombre = ganador.Nombre;
+            nuevoGanador.Puntos = ganador.Salud;
+
+            int i;
+            for (i = 0; i < listaGanadores.Count; i++)
+            {
+                if(listaGanadores[i].Puntos < nuevoGanador.Puntos)
+                {
+                    break;
+                }
+            }
+
+            listaGanadores.Insert(i, nuevoGanador);
+
+            if(listaGanadores.Count > 10)
+            {
+                listaGanadores.RemoveAt(10);
+            }
+            
+            FileStream archiboGanadores = new FileStream("Ganadores.json", FileMode.Create);
+            StreamWriter escribirGanador = new StreamWriter(archiboGanadores);
+
+            string strJson = JsonSerializer.Serialize(listaGanadores);
+            escribirGanador.WriteLine("{0}", strJson);
+            
             escribirGanador.Close();
+        }
+
+        private List<Ganador> leerArchivoGanadores()
+        {
+            List<Ganador> listaGanadores;
+            string rutaArchivo = @"Ganadores.json";
+
+            try
+            {
+                using (StreamReader leerJason = File.OpenText(rutaArchivo))
+                {
+                    var Json = leerJason.ReadToEnd();
+                    listaGanadores = JsonSerializer.Deserialize<List<Ganador>>(Json);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                listaGanadores = new List<Ganador>();
+            }
+
+            return listaGanadores;
         }
 
         private void btnIniciarBatalla_Click(object sender, EventArgs e)
@@ -124,6 +177,7 @@ namespace JuegoRol
             if(numAtaque == 0)
             {
                 btnIniciarBatalla.Text = "Ataque 1";
+                btnBatallaAuto.Enabled = true;
                 numAtaque++;
             }
             else
@@ -138,26 +192,46 @@ namespace JuegoRol
                 }
                 else
                 {
-                    btnIniciarBatalla.Enabled = false;
-                    btnSig.Enabled = true;
-                    if (personajes.ElementAt(0).Salud < personajes.ElementAt(1).Salud)
-                    {
-                        label4.Text = "Perdedor :(";
-                        label5.Text = "Ganador!!!";
-                        personajes.RemoveAt(0);
-                        premioGanador(personajes.ElementAt(0));
-
-                    }
-                    else
-                    {
-                        label5.Text = "Perdedor :(";
-                        label4.Text = "Ganador!!!";
-                        personajes.RemoveAt(1);
-                        premioGanador(personajes.ElementAt(0));
-
-                    }
+                    asignarGanadorYPerdedor();
                 }
             }
+        }
+
+        private void asignarGanadorYPerdedor()
+        {
+            btnIniciarBatalla.Enabled = false;
+            btnBatallaAuto.Enabled = false;
+            btnSig.Enabled = true;
+            if (personajes.ElementAt(0).Salud < personajes.ElementAt(1).Salud)
+            {
+                label4.Text = "Perdedor :(";
+                label5.Text = "Ganador!!!";
+                personajes.RemoveAt(0);
+                premioGanador(personajes.ElementAt(0));
+            }
+            else
+            {
+                label5.Text = "Perdedor :(";
+                label4.Text = "Ganador!!!";
+                personajes.RemoveAt(1);
+                premioGanador(personajes.ElementAt(0));
+            }
+        }
+
+        private void btnBatallaAuto_Click(object sender, EventArgs e)
+        {
+            if(numAtaque == 0)
+            {
+                numAtaque++;
+            }
+
+            while(numAtaque < 3 && siguenVivos() == 1)
+            {
+                actualizarVentanaBatalla(personajes.ElementAt(0), personajes.ElementAt(1), numAtaque);
+                numAtaque++;
+            }
+
+            asignarGanadorYPerdedor();
         }
     }
 }

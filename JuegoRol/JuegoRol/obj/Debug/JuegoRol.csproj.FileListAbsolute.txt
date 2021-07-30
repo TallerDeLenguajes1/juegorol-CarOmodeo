@@ -28,3 +28,4 @@ C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\System
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\bin\Debug\System.ValueTuple.xml
 C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.csproj.CopyComplete
+C:\Users\Caro\source\repos\juegorol-CarOmodeo\JuegoRol\JuegoRol\obj\Debug\JuegoRol.Vistas.RankingGanadores.resources

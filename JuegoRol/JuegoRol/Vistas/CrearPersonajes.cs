@@ -5,13 +5,14 @@ using System.Windows.Forms;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using JuegoRol.Vistas;
 
 namespace JuegoRol
 {
     public partial class FormCrearPersonaje : Form
     {
         List<Personaje> personajes = new List<Personaje>();
-        int cantidadParticipantesMax = 2;
+        int cantidadParticipantesMax = 4;
         List<string> nombresPokemones;
         public FormCrearPersonaje(List<string> listaPokemones)
         {
@@ -236,7 +237,6 @@ namespace JuegoRol
         private void btnGuardarListaPersj_Click(object sender, EventArgs e)
         {
             guardarArchivoCSV();
-            guardarArchivoJson();
             MessageBox.Show("Los Jugadores se guardaron con exito!!!", "Guardar Lista de Personajes");
         }
 
@@ -252,18 +252,10 @@ namespace JuegoRol
             escribirJugadore.Close();
         }
 
-        private void guardarArchivoJson()
+        private void RankingGanadores_Click(object sender, EventArgs e)
         {
-
-            FileStream jugadores = new FileStream("ListaJugadores.Json", FileMode.Create);
-            StreamWriter escribirJugadore = new StreamWriter(jugadores);
-
-            foreach (Personaje personaje in personajes)
-            {
-                string strJson = JsonSerializer.Serialize(personaje);
-                escribirJugadore.WriteLine("{0}", strJson);
-            }
-            escribirJugadore.Close();
+            RankingGanadores ventanaRanking = new RankingGanadores();
+            ventanaRanking.ShowDialog();
         }
     }
 }

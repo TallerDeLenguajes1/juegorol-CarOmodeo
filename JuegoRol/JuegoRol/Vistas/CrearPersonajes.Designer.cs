@@ -69,6 +69,7 @@ namespace JuegoRol
             this.comboBoxPersonajes = new System.Windows.Forms.ComboBox();
             this.btnIrBatalla = new System.Windows.Forms.Button();
             this.btnGuardarListaPersj = new System.Windows.Forms.Button();
+            this.RankingGanadores = new System.Windows.Forms.Button();
             this.groupPersonaje.SuspendLayout();
             this.groupDatos.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -476,11 +477,23 @@ namespace JuegoRol
             this.btnGuardarListaPersj.UseVisualStyleBackColor = true;
             this.btnGuardarListaPersj.Click += new System.EventHandler(this.btnGuardarListaPersj_Click);
             // 
+            // RankingGanadores
+            // 
+            this.RankingGanadores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RankingGanadores.Location = new System.Drawing.Point(9, 461);
+            this.RankingGanadores.Name = "RankingGanadores";
+            this.RankingGanadores.Size = new System.Drawing.Size(113, 39);
+            this.RankingGanadores.TabIndex = 11;
+            this.RankingGanadores.Text = "Ranking Personaje";
+            this.RankingGanadores.UseVisualStyleBackColor = true;
+            this.RankingGanadores.Click += new System.EventHandler(this.RankingGanadores_Click);
+            // 
             // FormCrearPersonaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 512);
+            this.Controls.Add(this.RankingGanadores);
             this.Controls.Add(this.btnIrBatalla);
             this.Controls.Add(this.groupDatos);
             this.Controls.Add(this.btnCrearEnemgos);
@@ -543,6 +556,7 @@ namespace JuegoRol
         private System.Windows.Forms.ComboBox comboBoxPersonajes;
         private System.Windows.Forms.Button btnIrBatalla;
         private System.Windows.Forms.Button btnGuardarListaPersj;
+        private System.Windows.Forms.Button RankingGanadores;
     }
 }
 
