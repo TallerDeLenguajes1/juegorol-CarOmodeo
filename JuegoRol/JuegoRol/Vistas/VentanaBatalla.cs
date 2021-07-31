@@ -48,6 +48,14 @@ namespace JuegoRol
             else
             {
                 MessageBox.Show("El ganador es " + personajes.ElementAt(0).Nombre, "Ganador!!!");
+                DialogResult respuesta = MessageBox.Show("Desea ver el ranking de ganadores??", "Ranking Ganadores", MessageBoxButtons.YesNo);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    RankingGanadores ventanaRanking = new RankingGanadores();
+                    ventanaRanking.ShowDialog();
+                }
+
                 Close();
             }
         }

@@ -56,7 +56,7 @@ namespace JuegoRol
             }
             catch (WebException ex)
             {
-                // Handle error
+                throw;
             }
 
             return listaPokemones;
