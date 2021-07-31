@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using JuegoRol.Vistas;
 
 namespace JuegoRol
@@ -14,6 +12,7 @@ namespace JuegoRol
         List<Personaje> personajes = new List<Personaje>();
         int cantidadParticipantesMax = 4;
         List<string> nombresPokemones;
+
         public FormCrearPersonaje(List<string> listaPokemones)
         {
             InitializeComponent();
@@ -48,17 +47,21 @@ namespace JuegoRol
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
         }
 
+        private void setearPersonajeEnComboBox(Personaje personaje)
+        {
+            comboBoxPersonajes.SelectedIndex = personajes.IndexOf(personaje);
+        }
+
         private void btnPersAleatorio_Click(object sender, EventArgs e)
         {
             Personaje nuevoPersonaje = CreadorPersonajePrueba.GenerarPersonaje(nombresPokemones);
             agregarPersonajeALista(nuevoPersonaje);
-            comboBoxPersonajes.SelectedIndex = personajes.IndexOf(nuevoPersonaje);
+
+            setearPersonajeEnComboBox(nuevoPersonaje);
             MessageBox.Show("Personaje Aleatorio creado con exito!!!", "Personaje Aleatorio Creado");
-            if (controlCantMaxPersonajes(personajes))
-            {
-                deshabilitarBotones_creacionPersonajes();
-            }            
-        }
+
+            controlCantMaxPersonajes();
+        }        
 
         private void btnCrearEnemigos_Click(object sender, EventArgs e)
         {
@@ -73,16 +76,10 @@ namespace JuegoRol
 
             } while (personajes.Count != cantidadParticipantesMax);
             MessageBox.Show("Se crearon " + cont + " enemigos con exito!!!", "Creación de enemigos");
-            if (controlCantMaxPersonajes(personajes))
-            {
-                deshabilitarBotones_creacionPersonajes();
-            }                  
-        }
 
-        private void agregarPersonajeALista(Personaje nuevoPersonaje)
-        {
-            personajes.Add(nuevoPersonaje);
-            cargarComboBoxPersonajes(nuevoPersonaje);
+            controlCantMaxPersonajes();
+
+            comboBoxPersonajes.SelectedIndex = personajes.Count - 1;
         }
 
         private void btnCrearNuevoPerd_Click(object sender, EventArgs e)
@@ -90,12 +87,10 @@ namespace JuegoRol
             Personaje nuevoPersonaje = new Personaje();
             generarPersonaje(nuevoPersonaje);
             agregarPersonajeALista(nuevoPersonaje);
-            comboBoxPersonajes.SelectedIndex = personajes.IndexOf(nuevoPersonaje);
+            setearPersonajeEnComboBox(nuevoPersonaje);
             MessageBox.Show("Personaje creado con exito!!!", "Personaje Creado");
-            if (controlCantMaxPersonajes(personajes))
-            {
-                deshabilitarBotones_creacionPersonajes();
-            }            
+
+            controlCantMaxPersonajes();
         }
 
         private void generarPersonaje(Personaje nuevoPersonaje)
@@ -108,7 +103,21 @@ namespace JuegoRol
             nuevoPersonaje.Edad = CreadorPersonajePrueba.generadorEdad(nuevoPersonaje.FechaNacimiento);
         }
 
-        private bool controlCantMaxPersonajes(List<Personaje> listaPersonajes)
+        private void agregarPersonajeALista(Personaje nuevoPersonaje)
+        {
+            personajes.Add(nuevoPersonaje);
+            cargarComboBoxPersonajes(nuevoPersonaje);
+        }
+
+        private void controlCantMaxPersonajes()
+        {
+            if (calcularCantMaxPersonajes(personajes))
+            {
+                deshabilitarBotones_creacionPersonajes();
+            }
+        }       
+
+        private bool calcularCantMaxPersonajes(List<Personaje> listaPersonajes)
         {
             return listaPersonajes.Count == cantidadParticipantesMax;
         }
@@ -236,20 +245,28 @@ namespace JuegoRol
 
         private void btnGuardarListaPersj_Click(object sender, EventArgs e)
         {
-            guardarArchivoCSV();
-            MessageBox.Show("Los Jugadores se guardaron con exito!!!", "Guardar Lista de Personajes");
+            guardarArchivoCSV();            
         }
 
         private void guardarArchivoCSV()
         {
-            FileStream jugadores = new FileStream("ListaJugadores.csv", FileMode.Create);
-            StreamWriter escribirJugadore = new StreamWriter(jugadores);
-
-            foreach (Personaje personaje in personajes)
+            if(comboBoxPersonajes.Items.Count != 0)
             {
-                escribirJugadore.WriteLine("{0};{1};{2}", personaje.Nombre, personaje.Tipo, personaje.Salud);
+                FileStream jugadores = new FileStream("ListaJugadores.csv", FileMode.Create);
+                StreamWriter escribirJugadore = new StreamWriter(jugadores);
+
+                foreach (Personaje personaje in personajes)
+                {
+                    escribirJugadore.WriteLine("{0};{1};{2}", personaje.Nombre, personaje.Tipo, personaje.Salud);
+                }
+                escribirJugadore.Close();
+                MessageBox.Show("Los Jugadores se guardaron con exito!!!", "Guardar Lista de Personajes");
             }
-            escribirJugadore.Close();
+            else
+            {
+                MessageBox.Show("Debe crear al menos 1 personaje", "No existe personaje creado...");
+            }
+            
         }
 
         private void RankingGanadores_Click(object sender, EventArgs e)

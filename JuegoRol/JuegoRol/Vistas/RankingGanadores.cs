@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
+﻿
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace JuegoRol.Vistas
@@ -10,27 +9,12 @@ namespace JuegoRol.Vistas
         public RankingGanadores()
         {
             InitializeComponent();
-            leerJson();
+            InicializarRanking();
         }
 
-        private void leerJson()
+        private void InicializarRanking()
         {
-            List<Ganador> listaGanadores;
-            string rutaArchivo = @"Ganadores.json";
-
-            try
-            {
-                using (StreamReader leerJason = File.OpenText(rutaArchivo))
-                {
-                    var Json = leerJason.ReadToEnd();
-                    listaGanadores = JsonSerializer.Deserialize<List<Ganador>>(Json);
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                listaGanadores = new List<Ganador>();
-                
-            }
+            List<Ganador> listaGanadores = ManejadorJason.leerArchivoGanadores();
 
             if(listaGanadores.Count < 10)
             {
@@ -78,14 +62,5 @@ namespace JuegoRol.Vistas
         {
             Close();
         }
-    }
-
-    public class Ganador
-    {
-        string nombre;
-        int puntos;
-
-        public string Nombre { get => nombre; set => nombre = value; }
-        public int Puntos { get => puntos; set => puntos = value; }
-    }
+    }    
 }

@@ -96,9 +96,5 @@ namespace JuegoRol
             Salud = Salud - (int)DProv;
            return Salud;
         }
-    }
-
-
-
-   
+    }   
 }

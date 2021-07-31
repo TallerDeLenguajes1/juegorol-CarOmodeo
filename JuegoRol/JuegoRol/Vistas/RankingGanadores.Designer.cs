@@ -488,6 +488,8 @@ namespace JuegoRol.Vistas
             this.ClientSize = new System.Drawing.Size(744, 444);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
+            this.MaximumSize = new System.Drawing.Size(760, 483);
+            this.MinimumSize = new System.Drawing.Size(760, 483);
             this.Name = "RankingGanadores";
             this.Text = "RankingGanadores";
             this.groupBox1.ResumeLayout(false);

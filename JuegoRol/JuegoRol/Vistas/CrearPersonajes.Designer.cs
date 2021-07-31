@@ -346,7 +346,7 @@ namespace JuegoRol
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(69, 259);
+            this.label6.Location = new System.Drawing.Point(69, 284);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 1;
@@ -362,7 +362,7 @@ namespace JuegoRol
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 200);
+            this.label4.Location = new System.Drawing.Point(128, 189);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 1;
@@ -394,7 +394,7 @@ namespace JuegoRol
             // labelSalud
             // 
             this.labelSalud.AutoSize = true;
-            this.labelSalud.Location = new System.Drawing.Point(26, 259);
+            this.labelSalud.Location = new System.Drawing.Point(26, 284);
             this.labelSalud.Name = "labelSalud";
             this.labelSalud.Size = new System.Drawing.Size(37, 13);
             this.labelSalud.TabIndex = 5;
@@ -412,7 +412,7 @@ namespace JuegoRol
             // labelFechNac
             // 
             this.labelFechNac.AutoSize = true;
-            this.labelFechNac.Location = new System.Drawing.Point(26, 175);
+            this.labelFechNac.Location = new System.Drawing.Point(26, 189);
             this.labelFechNac.Name = "labelFechNac";
             this.labelFechNac.Size = new System.Drawing.Size(96, 13);
             this.labelFechNac.TabIndex = 3;

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using JuegoRol.Vistas;
@@ -61,7 +56,11 @@ namespace JuegoRol
         {
             if (personajes.Count == 1)
             {
-                guardarGanador("Ganador", ".csv", participante);
+                Ganador nuevoGanador = new Ganador();
+
+                nuevoGanador.Nombre = participante.Nombre;
+                nuevoGanador.Puntos = participante.Salud;
+                ManejadorJason.guardarGanador(nuevoGanador);
             }
             else
             {
@@ -108,7 +107,7 @@ namespace JuegoRol
             return Math.Abs((float)(enemigo.valorAtaque() - participante.poderDefenza()) / MDP * 100);
         }
 
-        private void actualizarVentanaBatalla(Personaje p1, Personaje p2, int cantidadAtaque)
+        private void actualizarVentanaBatalla(Personaje p1, Personaje p2)
         {
             float danioP1 = danioProvocadoPorEnemigo(p1, p2);
             float danioP2 = danioProvocadoPorEnemigo(p2, p1);
@@ -116,61 +115,7 @@ namespace JuegoRol
             label5.Text = p2.actualizarSalud(danioP2).ToString();
 
             btnIniciarBatalla.Text = "Ataque " + (numAtaque + 1).ToString();
-        }
-
-        private void guardarGanador(string nombre, string formato, Personaje ganador)
-        {
-            List<Ganador> listaGanadores = leerArchivoGanadores();
-            Ganador nuevoGanador = new Ganador();
-
-            nuevoGanador.Nombre = ganador.Nombre;
-            nuevoGanador.Puntos = ganador.Salud;
-
-            int i;
-            for (i = 0; i < listaGanadores.Count; i++)
-            {
-                if(listaGanadores[i].Puntos < nuevoGanador.Puntos)
-                {
-                    break;
-                }
-            }
-
-            listaGanadores.Insert(i, nuevoGanador);
-
-            if(listaGanadores.Count > 10)
-            {
-                listaGanadores.RemoveAt(10);
-            }
-            
-            FileStream archiboGanadores = new FileStream("Ganadores.json", FileMode.Create);
-            StreamWriter escribirGanador = new StreamWriter(archiboGanadores);
-
-            string strJson = JsonSerializer.Serialize(listaGanadores);
-            escribirGanador.WriteLine("{0}", strJson);
-            
-            escribirGanador.Close();
-        }
-
-        private List<Ganador> leerArchivoGanadores()
-        {
-            List<Ganador> listaGanadores;
-            string rutaArchivo = @"Ganadores.json";
-
-            try
-            {
-                using (StreamReader leerJason = File.OpenText(rutaArchivo))
-                {
-                    var Json = leerJason.ReadToEnd();
-                    listaGanadores = JsonSerializer.Deserialize<List<Ganador>>(Json);
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                listaGanadores = new List<Ganador>();
-            }
-
-            return listaGanadores;
-        }
+        }        
 
         private void btnIniciarBatalla_Click(object sender, EventArgs e)
         {
@@ -184,10 +129,7 @@ namespace JuegoRol
             {
                 if (numAtaque < 3 && siguenVivos() == 1)
                 {
-                    Personaje personaje1 = personajes.ElementAt(0);
-                    Personaje personaje2 = personajes.ElementAt(1);
-
-                    actualizarVentanaBatalla(personaje1, personaje2, numAtaque);
+                    actualizarVentanaBatalla(personajes.ElementAt(0), personajes.ElementAt(1));
                     numAtaque++;
                 }
                 else
@@ -227,7 +169,7 @@ namespace JuegoRol
 
             while(numAtaque < 3 && siguenVivos() == 1)
             {
-                actualizarVentanaBatalla(personajes.ElementAt(0), personajes.ElementAt(1), numAtaque);
+                actualizarVentanaBatalla(personajes.ElementAt(0), personajes.ElementAt(1));
                 numAtaque++;
             }
 

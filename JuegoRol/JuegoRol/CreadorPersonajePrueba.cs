@@ -32,15 +32,8 @@ namespace JuegoRol
 
         private static string generarNombre(List<string> nombreElegibles)
         {
-
-            //string[] nombres = { "Carlos", "Maria", "Pedro", "Juan", "Lucia" };
-            //string[] apellidos = { "Perez", "Gonzales", "Ramirez", "Albornoz", "Torres" };
-
             int numNombre = aleatorio.Next(nombreElegibles.Count);
-
-            //int numApellido = aleatorio.Next(5);
-
-            //return nombres[numNombre] + " " + apellidos[numApellido];
+            
             return nombreElegibles[numNombre].Substring(0, 1).ToUpper() + nombreElegibles[numNombre].Substring(1);
         }
 
